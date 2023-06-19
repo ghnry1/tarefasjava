@@ -12,7 +12,6 @@ public class Eventos {
 	private double valoringresso;
 	private String status;
 	private static final double VALOR_DEFAULT_INGRESSO = 100;
-	private static int numProximoEvento;
 	private static final int QTD_CAPACIDADE_DEFAULT = 3000;
 	private static final int QTD_INGRESSOS_VENDA_DEFAULT = 2;
 
@@ -28,7 +27,7 @@ public class Eventos {
 		this.data = data;
 		this.hora = hora;
 		this.qtdlugares = QTD_CAPACIDADE_DEFAULT;
-		this.qtdlugaresvendidos = 0;
+		this.qtdlugaresvendidos = qtdlugaresvendidos;
 		this.valoringresso = VALOR_DEFAULT_INGRESSO;
 		this.status = "Venda não iniciada";
 	}
@@ -112,15 +111,16 @@ public class Eventos {
 			qtdlugares-=qtdlugaresvendidos;
 			qtdlugaresvendidos += qtdlugaresvendidos;
 			System.out.println("Venda realizada.");
+			
 			System.out.println("Foram comprados " + qtdlugaresvendidos + " ingressos.");
 		}else {
 			System.out.println("A venda não pode ser realizada.");
 		}
 	}
 
-	public void Qtdlugareslivres(int qtdlugaresvendidos) {
+	public void Qtdlugareslivres(int Qtdlugaresvendidos) {
 		int Qtdlugareslivres = qtdlugares -= qtdlugaresvendidos; 
-		System.out.println("Ainda têm " + qtdlugares + " livres.");
+		System.out.println("Ainda têm " + Qtdlugareslivres + " lugares livres.");
 	}
 
 	public void iniciarvenda() {
@@ -166,10 +166,10 @@ public class Eventos {
 
 	@Override
 	public String toString() {
-		return "\nO código é: " + codigo + "\no título é: " + titulo + "\no local é: " + local + "\na data é: " + data
-				+ "\na hora é: " + hora + "\na quantidade de lugares livres é: " + qtdlugares
-				+ "\na quantidade de lugares vendidos é: " + qtdlugaresvendidos + "\no valor do ingresso é: "
-				+ valoringresso + "\no status do evento é: " + status;
+		return "\nO código é: " + codigo + ".\no título é: " + titulo + ".\no local é: " + local + ".\na data é: " + data
+				+ ".\na hora é: " + hora + ".\na quantidade de lugares livres é: " + qtdlugares
+				+ ".\na quantidade de lugares vendidos é: " + qtdlugaresvendidos + ".\no valor do ingresso é: "
+				+ valoringresso + ".\no status do evento é: " + status + ".\n";
 	}
 
 }
