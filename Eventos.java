@@ -7,20 +7,17 @@ public class Eventos {
 	private String local;
 	private String data;
 	private String hora;
-	private int qtdLugares;
+	private int qtdlugares;
 	private int qtdlugaresvendidos;
 	private double valoringresso;
 	private String status;
 	private static final double VALOR_DEFAULT_INGRESSO = 100;
-	private static int proximoCodigo = 1;
-    private static final int QTD_CAPACIDADE_DEFAULT = 3000;
+	private static int numProximoEvento;
+	private static final int QTD_CAPACIDADE_DEFAULT = 3000;
 	private static final int QTD_INGRESSOS_VENDA_DEFAULT = 2;
-    public Eventos() {
-		super();
-		this.codigo= proximoCodigo++;
-		this.valoringresso = VALOR_DEFAULT_INGRESSO;
-		this.qtdLugares = QTD_CAPACIDADE_DEFAULT;
-		this.status = "Venda não iniciada";
+
+	public Eventos() {
+		
 	}
 
 	public Eventos(int codigo, String titulo, String local, String data, String hora) {
@@ -30,9 +27,9 @@ public class Eventos {
 		this.local = local;
 		this.data = data;
 		this.hora = hora;
-		this.qtdLugares = QTD_CAPACIDADE_DEFAULT;
-		this.qtdlugaresvendidos = QTD_INGRESSOS_VENDA_DEFAULT;
-		this.valoringresso = valoringresso;
+		this.qtdlugares = QTD_CAPACIDADE_DEFAULT;
+		this.qtdlugaresvendidos = 0;
+		this.valoringresso = VALOR_DEFAULT_INGRESSO;
 		this.status = "Venda não iniciada";
 	}
 
@@ -77,11 +74,11 @@ public class Eventos {
 	}
 
 	public int getQtdlugares() {
-		return qtdLugares;
+		return qtdlugares;
 	}
 
 	public void setQtdlugares(int qtdlugares) {
-		this.qtdLugares = qtdlugares;
+		this.qtdlugares = qtdlugares;
 	}
 
 	public int getQtdlugaresvendidos() {
@@ -109,50 +106,70 @@ public class Eventos {
 		this.status = status;
 	}
 
-	public void vendas(int quantidade) {
-		if(status.equals("Vendas iniciadas") && qtdlugaresvendidos + quantidade <= qtdLugares) {
-			qtdlugaresvendidos += quantidade;
-			System.out.println("Venda realizada!");
+
+	public void vendas(int qtdlugaresvendidos) {
+		if(status.equalsIgnoreCase("Venda iniciada")&& qtdlugares <= QTD_CAPACIDADE_DEFAULT) {
+			qtdlugares-=qtdlugaresvendidos;
+			qtdlugaresvendidos += qtdlugaresvendidos;
+			System.out.println("Venda realizada.");
+			System.out.println("Foram comprados " + qtdlugaresvendidos + " ingressos.");
 		}else {
-			System.out.println("Não foi possível realizar a venda.");
+			System.out.println("A venda não pode ser realizada.");
+		}
+	}
+
+	public void Qtdlugareslivres(int qtdlugaresvendidos) {
+		int Qtdlugareslivres = qtdlugares -= qtdlugaresvendidos; 
+		System.out.println("Ainda têm " + qtdlugares + " livres.");
+	}
+
+	public void iniciarvenda() {
+		if(!status.equals("Vendas iniciadas") && qtdlugaresvendidos <= qtdlugares) {
+			status = "Vendas iniciadas";
+			System.out.println("Vendas iniciadas.");
+		}else {
+			System.out.println("As vendas já foram iniciadas ou finalizadas.");
+		}
+			
+		
+	}
+
+	public void finalizarvenda() {
+		if(status.equals("Vendas iniciadas")) {
+			status = "Vendas encerradas";
+			System.out.println("Vendas encerradas.");
+		}else {
+			System.out.println("As vendas não foram iniciadas ou já foram encerradas.");
 		}
 		
 	}
-	public void vendas() {
-		 vendas(QTD_INGRESSOS_VENDA_DEFAULT);
-	}
-	public int qtdlugareslivres(int qtdlugares) {
-		return qtdlugares-qtdlugaresvendidos;
-	}
-	public void iniciarvenda() {
-			if(status.equals("Vendas não iniciadas")) {
-				status = "Vendas iniciadas";
-				System.out.println("As vendas para o ingresso foram iniciadas.");
-			}else {
-				System.out.println("As vendas já foram iniciadas ou encerradas.");
-			}
-			}
-	public void finalizarvenda() {
-		if(status.equals("Vendas iniciadas")) {
-			status = "Vendas finalizadas.";
-		System.out.println("As vendas do evento foram finalizadas.");
-		}else {
-			System.out.println("As vendas não foram iniciadas ou já foram finalizadas.");
-		}
-	}
+
 	public void cancelarevento() {
-		if(!status.equals("Evento cancelado")) {
-    		status = "Evento cancelado";
-    		}else {
-    			System.out.println("O evento foi cancelado.");
-    		}
+	if(!status.equals("Evento cancelado")) {
+			this.status = "Cancelado";
+			System.out.println("O evento foi cancelado.");
+		}else {
+			System.out.println("O evento já está cancelado.");
+		}
+		
 	}
-    public void eventoocorrido() {
-    	if(!status.equals("Evento cancelado.") && !status.equals("Evento ocorrido.")){
-    		status = "Evento ocorrido.";
-    		System.out.println("Evento já ocorreu.");
-    	}else {
-    		System.out.println("O evento foi cancelado ou já ocorreu.");
-    	}
-    }
+
+	public void eventoocorrido() {
+		if (!status.equals("Evento cancelado") && !status.equals("Evento ocorrido")) {
+			status = "Evento ocorrido";
+			System.out.println("Evento já ocorreu.");
+		}else {
+			System.out.println("O evento já foi cancelado ou já ocorreu.");
+		}
+		
+	}
+
+	@Override
+	public String toString() {
+		return "\nO código é: " + codigo + "\no título é: " + titulo + "\no local é: " + local + "\na data é: " + data
+				+ "\na hora é: " + hora + "\na quantidade de lugares livres é: " + qtdlugares
+				+ "\na quantidade de lugares vendidos é: " + qtdlugaresvendidos + "\no valor do ingresso é: "
+				+ valoringresso + "\no status do evento é: " + status;
+	}
+
 }

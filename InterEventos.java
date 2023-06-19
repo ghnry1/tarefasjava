@@ -86,23 +86,18 @@ public class InterEventos {
 				codigo = in.nextInt();
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
-						System.out.println("A venda de ingressos foi iniciada.");
-
-					} else {
-						System.out.println("Evento não encontrado.");
+						evento.get(i).iniciarvenda();
 					}
 
 				}
 				continue;
 
 			case 5:
-				System.out.println("Digite o código do evento para finalizar a venda de ingressos: ");
+				System.out.print("Digite o código do evento para finalizar a venda de ingressos: ");
 				codigo = in.nextInt();
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
-						System.out.println("A venda de ingressos foi encerrada.");
-					} else {
-						System.out.println("Evento não encontrado.");
+						evento.get(i).finalizarvenda();
 					}
 
 				}
@@ -113,11 +108,9 @@ public class InterEventos {
 				codigo = in.nextInt();
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
-						System.out.println("O evento foi cancelado.");
-					} else {
-						System.out.println("Evento não encontrado.");
-					}
+						evento.get(i).cancelarevento();
 
+					}
 				}
 				continue;
 
@@ -126,11 +119,8 @@ public class InterEventos {
 				codigo = in.nextInt();
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
-						System.out.println("O evento já ocorreu.");
-					} else {
-						System.out.println("Evento não encontrado.");
+						evento.get(i).eventoocorrido();
 					}
-
 				}
 				continue;
 
@@ -140,11 +130,8 @@ public class InterEventos {
 				codigo = in.nextInt();
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
-						System.out.println("A quantidade de lugares livres é: " + evento.get(i).getQtdlugares());
-					} else {
-						System.out.println("Evento não encontrado.");
+					evento.get(i).Qtdlugareslivres(i);
 					}
-
 				}
 				continue;
 
@@ -154,9 +141,11 @@ public class InterEventos {
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
 						System.out.println("Quantos ingressos serão comprados?");
-						int qtd = in.nextInt();
+						int qtd = in.nextInt();				
 						System.out.println("Foram vendidos: " + qtd + " ingressos.");
-						System.out.println("Sobraram apenas " + (evento.get(i).getQtdlugares() + - qtd) + " lugares livres.");
+						evento.get(i).Qtdlugareslivres(qtd);
+						
+						
 					} else {
 						System.out.println("Evento não encontrado.");
 					}
@@ -165,14 +154,13 @@ public class InterEventos {
 				continue;
 
 			case 10:
-				
+				System.out.println("\n" + evento.toString());
 
-				
 				continue;
 
 			default:
 				System.out.println("Opção inválida.");
-				
+
 			}
 
 		} while (opc != 11);
