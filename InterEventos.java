@@ -49,7 +49,8 @@ public class InterEventos {
 				String hora = in.next();
 				evento.add(new Eventos(codigo, titulo, local, data, hora));
 				System.out.println("Evento cadastrado.");
-
+				
+				
 				continue;
 
 			case 2:
@@ -188,10 +189,12 @@ public class InterEventos {
 				continue;
 
 			case 11:
-
+				if(!evento.isEmpty()) {
 				System.out.println("========Informações dos Eventos:========");
 				System.out.println("\n" + evento.toString());
-
+				}else {
+					System.out.println("Nenhum evento cadastrado.");
+				}
 				continue;
 
 			case 12:
