@@ -86,7 +86,7 @@ public class InterEventos {
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
 						evento.get(i).iniciarvenda();
-					}else {
+					} else {
 						System.out.println("Evento não encontrado.");
 					}
 
@@ -99,7 +99,7 @@ public class InterEventos {
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
 						evento.get(i).finalizarvenda();
-					}else {
+					} else {
 						System.out.println("Evento não encontrado.");
 					}
 
@@ -113,7 +113,7 @@ public class InterEventos {
 					if (evento.get(i).getCodigo() == codigo) {
 						evento.get(i).cancelarevento();
 
-					}else {
+					} else {
 						System.out.println("Evento não encontrado.");
 					}
 				}
@@ -125,7 +125,7 @@ public class InterEventos {
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
 						evento.get(i).eventoocorrido();
-					}else {
+					} else {
 						System.out.println("Evento não encontrado.");
 					}
 				}
@@ -138,7 +138,7 @@ public class InterEventos {
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
 						evento.get(i).Qtdlugareslivres(i);
-					}else {
+					} else {
 						System.out.println("Evento não encontrado.");
 					}
 				}
@@ -174,7 +174,7 @@ public class InterEventos {
 
 							System.out.println(
 									"Foram vendidos: " + evento.get(i).getQtdlugaresvendidos() + " ingressos.");
-						}else {
+						} else {
 							System.out.println("Evento não encontrado.");
 						}
 					}
@@ -183,9 +183,12 @@ public class InterEventos {
 				continue;
 
 			case 11:
+				if(evento.equals("Evento cadastrado.")) {
 				System.out.println("========Informações dos Eventos:========");
 				System.out.println("\n" + evento.toString());
-
+				}else {
+					System.out.println("Nenhum evento cadastrado.");
+				}
 				continue;
 
 			case 12:
