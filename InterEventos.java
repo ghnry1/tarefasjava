@@ -180,6 +180,8 @@ public class InterEventos {
 						} else {
 							System.out.println("Evento não encontrado.");
 						}
+					}else {
+						System.out.println("As vendas não foram iniciadas, ocorreram ou foram canceladas.");
 					}
 				}
 
