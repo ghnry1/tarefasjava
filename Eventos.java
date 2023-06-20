@@ -30,6 +30,7 @@ public class Eventos {
 		this.qtdlugaresvendidos = qtdlugaresvendidos;
 		this.valoringresso = VALOR_DEFAULT_INGRESSO;
 		this.status = "Venda não iniciada";
+
 	}
 
 	public int getCodigo() {
@@ -118,9 +119,9 @@ public class Eventos {
 	}
 
 	public void Qtdlugareslivres(int Qtdlugaresvendidos) {
-		if(!status.equals("Evento cancelado") && !status.equals("Vendas encerradas.")) {
-		System.out.println("O evento foi cancelado, ocorrou ou as vendas foram encerradas.");
-		}else {
+		if (!status.equals("Evento cancelado") && !status.equals("Vendas encerradas.")) {
+			System.out.println("O evento foi cancelado, ocorrou ou as vendas foram encerradas.");
+		} else {
 			int Qtdlugareslivres = qtdlugares -= qtdlugaresvendidos;
 			System.out.println("Ainda têm " + Qtdlugareslivres + " lugares livres.");
 		}
