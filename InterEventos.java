@@ -12,7 +12,6 @@ public class InterEventos {
 		Scanner in = new Scanner(System.in);
 		List<Eventos> evento = new ArrayList<>();
 
-
 		int opc;
 
 		do {
@@ -27,8 +26,9 @@ public class InterEventos {
 			System.out.println("7. Marcar um determinado evento como já ocorrido.");
 			System.out.println("8. Consultar a quantidade de lugares livres para um determinado evento.");
 			System.out.println("9. Vender ingresso de um determinado evento.");
-			System.out.println("10. Listar todos os dados dos eventos.");
-			System.out.println("11. Sair" + "\n");
+			System.out.println("10. Vender ingresso de um evento com quantidade de ingressos default.");
+			System.out.println("11. Listar todos os dados dos eventos.");
+			System.out.println("12. Sair" + "\n");
 
 			opc = in.nextInt();
 
@@ -86,6 +86,8 @@ public class InterEventos {
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
 						evento.get(i).iniciarvenda();
+					}else {
+						System.out.println("Evento não encontrado.");
 					}
 
 				}
@@ -97,6 +99,8 @@ public class InterEventos {
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
 						evento.get(i).finalizarvenda();
+					}else {
+						System.out.println("Evento não encontrado.");
 					}
 
 				}
@@ -109,6 +113,8 @@ public class InterEventos {
 					if (evento.get(i).getCodigo() == codigo) {
 						evento.get(i).cancelarevento();
 
+					}else {
+						System.out.println("Evento não encontrado.");
 					}
 				}
 				continue;
@@ -119,6 +125,8 @@ public class InterEventos {
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
 						evento.get(i).eventoocorrido();
+					}else {
+						System.out.println("Evento não encontrado.");
 					}
 				}
 				continue;
@@ -129,7 +137,9 @@ public class InterEventos {
 				codigo = in.nextInt();
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getCodigo() == codigo) {
-					evento.get(i).Qtdlugareslivres(i);
+						evento.get(i).Qtdlugareslivres(i);
+					}else {
+						System.out.println("Evento não encontrado.");
 					}
 				}
 				continue;
@@ -138,35 +148,56 @@ public class InterEventos {
 				System.out.println("Digite o código do evento para venda dos ingressos: ");
 				codigo = in.nextInt();
 				for (int i = 0; i < evento.size(); i++) {
-					if(evento.get(i).getStatus()=="Vendas iniciadas"){
-					if (evento.get(i).getCodigo() == codigo) {
-						System.out.println("Quantos ingressos serão comprados?");
-						evento.get(i).setQtdlugaresvendidos(in.nextInt());		
-						System.out.println("Foram vendidos: " + evento.get(i).getQtdlugaresvendidos() + " ingressos.");
-						
-						
-						
+					if (evento.get(i).getStatus() == "Vendas iniciadas") {
+						if (evento.get(i).getCodigo() == codigo) {
+							System.out.println("Quantos ingressos serão comprados?");
+							evento.get(i).setQtdlugaresvendidos(in.nextInt());
+							System.out.println(
+									"Foram vendidos: " + evento.get(i).getQtdlugaresvendidos() + " ingressos.");
+
+						} else {
+							System.out.println("Evento não encontrado.");
+						}
 					} else {
-						System.out.println("Evento não encontrado.");
-					} }else {
 						System.out.println("As vendas não foram iniciadas, ocorreram ou foram canceladas.");
 					}
 
 				}
 				continue;
-
 			case 10:
+				System.out.println("Digite o código do evento para venda dos ingressos default: ");
+				codigo = in.nextInt();
+				for (int i = 0; i < evento.size(); i++) {
+					if (evento.get(i).getStatus() == "Vendas iniciadas") {
+						if (evento.get(i).getCodigo() == codigo) {
+							evento.get(i).setQtdlugaresvendidos(2);
+
+							System.out.println(
+									"Foram vendidos: " + evento.get(i).getQtdlugaresvendidos() + " ingressos.");
+						}else {
+							System.out.println("Evento não encontrado.");
+						}
+					}
+				}
+
+				continue;
+
+			case 11:
 				System.out.println("========Informações dos Eventos:========");
 				System.out.println("\n" + evento.toString());
 
 				continue;
 
+			case 12:
+				System.out.println("Programa finalizado.");
+
+				continue;
 			default:
 				System.out.println("Opção inválida.");
 
 			}
 
-		} while (opc != 11);
+		} while (opc != 12);
 
 		in.close();
 	}

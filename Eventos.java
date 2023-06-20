@@ -168,7 +168,7 @@ public class Eventos {
 	public String toString() {
 		return "\nO código é: " + codigo + ".\no título é: " + titulo + ".\no local é: " + local + ".\na data é: " + data
 				+ ".\na hora é: " + hora + ".\na quantidade de lugares livres é: " + qtdlugares
-				+ ".\na quantidade de lugares vendidos é: " + qtdlugaresvendidos + ".\no valor do ingresso é: "
+				+ ".\na quantidade de lugares vendidos é: " + (3000 - qtdlugares) + ".\no valor do ingresso é: "
 				+ valoringresso + ".\no status do evento é: " + status + ".\n";
 	}
 
