@@ -107,9 +107,20 @@ public class Eventos {
 	}
 
 	public void vendas(int qtdlugaresvendidos) {
-		if (status.equalsIgnoreCase("Venda iniciada") && qtdlugares <= QTD_CAPACIDADE_DEFAULT) {
+		if (status.equalsIgnoreCase("Vendas iniciadas") && qtdlugares <= QTD_CAPACIDADE_DEFAULT) {
 			qtdlugares -= qtdlugaresvendidos;
-			qtdlugaresvendidos += qtdlugaresvendidos;
+			System.out.println("Venda realizada.");
+
+			System.out.println("Foram comprados " + qtdlugaresvendidos + " ingressos.");
+		} else {
+			System.out.println("A venda não pode ser realizada.");
+		}
+	}
+
+	public void vendasdefault(int qtdlugaresvendidos) {
+		if (status.equalsIgnoreCase("Vendas iniciadas") && qtdlugares <= QTD_CAPACIDADE_DEFAULT) {
+			qtdlugaresvendidos = QTD_INGRESSOS_VENDA_DEFAULT;
+			qtdlugares -= qtdlugaresvendidos;
 			System.out.println("Venda realizada.");
 
 			System.out.println("Foram comprados " + qtdlugaresvendidos + " ingressos.");
@@ -119,11 +130,12 @@ public class Eventos {
 	}
 
 	public void Qtdlugareslivres(int Qtdlugaresvendidos) {
-		if (status.equals("Evento cancelado") && status.equals("Vendas encerradas.") && status.equals("Evento ocorrido")){
-			System.out.println("O evento foi cancelado, ocorrou ou as vendas foram encerradas.");
-		} else {
+		if (status.equalsIgnoreCase("Vendas iniciadas")) {
 			int Qtdlugareslivres = qtdlugares -= qtdlugaresvendidos;
 			System.out.println("Ainda têm " + Qtdlugareslivres + " lugares livres.");
+		} else {
+			System.out.println("O evento foi cancelado, ocorreu ou as vendas foram encerradas.");
+
 		}
 	}
 

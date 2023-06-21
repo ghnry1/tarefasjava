@@ -49,8 +49,7 @@ public class InterEventos {
 				String hora = in.next();
 				evento.add(new Eventos(codigo, titulo, local, data, hora));
 				System.out.println("Evento cadastrado.");
-				
-				
+
 				continue;
 
 			case 2:
@@ -155,9 +154,7 @@ public class InterEventos {
 					if (evento.get(i).getStatus() == "Vendas iniciadas") {
 						if (evento.get(i).getCodigo() == codigo) {
 							System.out.println("Quantos ingressos serão comprados?");
-							evento.get(i).setQtdlugaresvendidos(in.nextInt());
-							System.out.println(
-									"Foram vendidos: " + evento.get(i).getQtdlugaresvendidos() + " ingressos.");
+							evento.get(i).vendas(in.nextInt());
 
 						} else {
 							System.out.println("Evento não encontrado.");
@@ -174,14 +171,12 @@ public class InterEventos {
 				for (int i = 0; i < evento.size(); i++) {
 					if (evento.get(i).getStatus() == "Vendas iniciadas") {
 						if (evento.get(i).getCodigo() == codigo) {
-							evento.get(i).setQtdlugaresvendidos(2);
 
-							System.out.println(
-									"Foram vendidos: " + evento.get(i).getQtdlugaresvendidos() + " ingressos.");
+							evento.get(i).vendasdefault(i);
 						} else {
 							System.out.println("Evento não encontrado.");
 						}
-					}else {
+					} else {
 						System.out.println("As vendas não foram iniciadas, ocorreram ou foram canceladas.");
 					}
 				}
@@ -189,10 +184,10 @@ public class InterEventos {
 				continue;
 
 			case 11:
-				if(!evento.isEmpty()) {
-				System.out.println("========Informações dos Eventos:========");
-				System.out.println("\n" + evento.toString());
-				}else {
+				if (!evento.isEmpty()) {
+					System.out.println("========Informações dos Eventos:========");
+					System.out.println("\n" + evento.toString());
+				} else {
 					System.out.println("Nenhum evento cadastrado.");
 				}
 				continue;
