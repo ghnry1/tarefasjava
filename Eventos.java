@@ -119,7 +119,7 @@ public class Eventos {
 	}
 
 	public void Qtdlugareslivres(int Qtdlugaresvendidos) {
-		if (status.equals("Evento cancelado") && status.equals("Vendas encerradas.") && status.equals("Evento ocorrido"){
+		if (status.equals("Evento cancelado") && status.equals("Vendas encerradas.") && status.equals("Evento ocorrido")){
 			System.out.println("O evento foi cancelado, ocorrou ou as vendas foram encerradas.");
 		} else {
 			int Qtdlugareslivres = qtdlugares -= qtdlugaresvendidos;
