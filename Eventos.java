@@ -160,7 +160,7 @@ public class Eventos {
 	}
 
 	public void cancelarevento() {
-		if (!status.equals("Evento cancelado")) {
+		if (!status.equals("Evento cancelado") && !status.equals("Evento ocorrido") && !status.equals("Vendas encerradas")) {
 			this.status = "Evento cancelado";
 			System.out.println("O evento foi cancelado.");
 		} else {
